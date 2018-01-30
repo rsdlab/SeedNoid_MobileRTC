@@ -1,0 +1,85 @@
+#ifndef SEEDNOID_MOBILE_IDL
+#define SEEDNOID_MOBILE_IDL
+
+#include "BasicDataType.idl"
+#include "ExtendedDataTypes.idl"
+
+module RTC {
+
+  struct LifterAngle
+  {
+    //Angle of Top Lifter in degrees
+    double top;
+    //Angle of Bottom Lifter in degrees
+    double bottom;
+  };
+
+  enum RETURN_VALUE
+  {
+    // COMMON
+    RETURN_OK,
+    RETURN_MOVE_OK,
+    RETURN_INVALID_PARAMETER,
+    RETURN_NOT_FOUND,
+    RETURN_OUT_OF_RANGE,
+    RETURN_ERROR,
+
+    RETVAL_ARRIVAL_OK,
+    RETVAL_EMERGENCY,
+
+    RETVAL_SET_PARAM,
+
+    RETVAL_MOVE_START,
+    RETVAL_MOVE_STOP
+  };
+
+  enum LIFTER_STATE
+  {
+    LIFTER_STOPPED,
+    LIFTER_MOVING,
+    LIFTER_SET_PARAM_OK,
+    LIFTER_ERROR
+  };
+
+  enum TARGETPOSITION_STATE
+  {
+    TARFETPOSITION_STOPPED,
+    TARGETPOSITION_MOVING,
+    TARGETPOSITION_ARRIVED,
+    TARGETPOSITION_SET_PARAM_OK,
+    TARGETPOSITION_ERROR
+  };
+
+  interface LifterPoseInterface
+  {
+    //Check Lifter State
+    LIFTER_STATE checkState();
+    //Set Lifter Move Time
+    LIFTER_STATE setLifterTime(in double MoveTime);
+    //Send Lifter Angle
+    RETURN_VALUE sendLifterAngle(in LifterAngle targetLifterAngle);
+    //Send Lifter Pose
+    RETURN_VALUE sendLifterPose(in Point3D targetLifterPose);
+    //Get Lifter Angle
+    RETURN_VALUE getLifterAngle(out LifterAngle currentLifterAngle);
+    //Get Lifter Pose
+    RETURN_VALUE getLifterPose(out Point3D currentLifterPose);
+  };
+
+  interface TargetPositionInterface
+  {
+    //Check State
+    TARGETPOSITION_STATE checkState();
+    //Check Arrived
+    TARGETPOSITION_STATE checkArrived();
+    //Move from Target Position 
+    RETURN_VALUE setPositionParam(in Pose2D targetPose);
+    //Move Start
+    RETURN_VALUE moveStart();
+    //Move Stop
+    RETURN_VALUE moveStop();
+  };
+
+};
+
+#endif     /* SEEDNOID_MOBILE_IDL */
