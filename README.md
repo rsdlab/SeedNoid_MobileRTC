@@ -7,7 +7,7 @@ SEED-Noidの移動台車(MecanumWheel)とリフターを「OpenRTM-aist」で用
  言語:c++
  
 2.動作確認OS  
-　Ubuntu14.04,Ubuntu16.04
+ Ubuntu14.04,Ubuntu16.04
 
 3.利用方法  
  libboostを用いてシリアル通信のプログラミングを行なっているので，libboostをインストールしてください．
