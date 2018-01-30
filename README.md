@@ -8,7 +8,6 @@ SEED-Noidの移動台車(MecanumWheel)とリフターを「OpenRTM-aist」で用
  
 2.動作確認OS
 
-
  Ubuntu14.04,Ubuntu16.04
 
 3.利用方法
